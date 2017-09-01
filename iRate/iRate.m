@@ -106,7 +106,7 @@ static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.
 
 @implementation iRate
 
-+ (void)load
++ (void)initialize
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self sharedInstance];
@@ -409,8 +409,6 @@ static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.
     [[NSUserDefaults standardUserDefaults] setInteger:(NSInteger)count forKey:iRateInAppPromptCount];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-
-iRateInAppPromptCount
 
 - (BOOL)ratedAnyVersion
 {
@@ -862,7 +860,8 @@ iRateInAppPromptCount
         
         if (!manual && [SKStoreReviewController class] && self.useSKStoreReviewControllerIfAvailable && self.inAppPromptCount <= 3)
         {
-            self.inAppPromptCount++
+            self.inAppPromptCount++;
+            self.ratedThisVersion = YES;
             [SKStoreReviewController requestReview];
         }
         else
