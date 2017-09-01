@@ -846,9 +846,9 @@ static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_10_2
 
-        if (!manual && [SKStoreReviewController class])
+        if (!manual && [SKStoreReviewController class] && self.useSKStoreReviewControllerIfAvailable)
         {
-            [self remindLater];
+            [self rate];
             [SKStoreReviewController requestReview];
         }
         else
