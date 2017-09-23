@@ -84,9 +84,10 @@ static NSString *const iRateInAppPromptCount = @"iRateInAppPromptCount";
 static NSString *const iRateMacAppStoreBundleID = @"com.apple.appstore";
 static NSString *const iRateAppLookupURLFormat = @"https://itunes.apple.com/%@/lookup";
 
+
 static NSString *const iRateiOSAppStoreURLScheme = @"itms-apps";
-static NSString *const iRateiOSAppStoreURLFormat = @"itms-apps://itunes.apple.com/app/id%@";
-static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.com/app/id%@";
+static NSString *const iRateiOSAppStoreURLFormat = @"itms-apps://itunes.apple.com/us/app/foo/id%@?action=write-review";
+static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.com/us/app/foo/id%@?action=write-review";
 
 
 #define SECONDS_IN_A_DAY 86400.0
