@@ -96,6 +96,7 @@ typedef NS_ENUM(NSUInteger, iRateErrorCode)
 
 - (void)iRateCouldNotConnectToAppStore:(NSError *)error;
 - (void)iRateDidDetectAppUpdate;
+- (void)iRateWillShowRatingWithCompletion:(void (^__nullable)(void))completion;
 - (BOOL)iRateShouldPromptForRating;
 - (void)iRateDidPromptForRating;
 - (void)iRateUserDidAttemptToRateApp;
