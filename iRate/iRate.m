@@ -863,7 +863,16 @@ static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.
         {
             self.inAppPromptCount++;
             self.ratedThisVersion = YES;
-            [SKStoreReviewController requestReview];
+            void (^showRatingBlock)(void) = ^{
+                [SKStoreReviewController requestReview];
+            };
+            
+            if ([self.delegate respondsToSelector:@selector(iRateWillShowRatingWithCompletion:)])
+            {
+                [self.delegate iRateWillShowRatingWithCompletion:showRatingBlock];
+            } else {
+                showRatingBlock();
+            }
         }
         else
 #endif
@@ -902,7 +911,16 @@ static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.
                 self.visibleAlert = alert;
                 
                 //get current view controller and present alert
-                [topController presentViewController:alert animated:YES completion:NULL];
+                void (^showRatingBlock)(void) = ^{
+                    [topController presentViewController:alert animated:YES completion:NULL];
+                };
+                
+                if ([self.delegate respondsToSelector:@selector(iRateWillShowRatingWithCompletion:)])
+                {
+                    [self.delegate iRateWillShowRatingWithCompletion:showRatingBlock];
+                } else {
+                    showRatingBlock();
+                }
             }
             else
             {
